@@ -1,5 +1,6 @@
-<div ng-app="helloworld" ng-controller="MainCtrl" ng-submit="onsubmit()">
-    <form name="myForm">
+<div ng-app="helloworld" ng-controller="MainCtrl" >
+    <form name="myForm" ng-submit="OnSubmit(myForm.$valid)" novalidate>
+    
         <div>
             <div class="list-group">
                 <div class="list-group-item"  data-ng-repeat="choice in choices">
@@ -10,31 +11,31 @@
                     </div>
                     {{index}}""
                     {{choice.id}}
-                    <div class="col-sm-3">
+                    <div class="col-sm-3 form-group"  ng-class="{ 'has-error' : myForm.Nmae{{$index}}.$invalid && (!myForm.Nmae{{$index}}.$pristine || myForm.$submitted ) && submitted}">
                         <input class="form-control" type="text" ng-model="choice.name" name='Nmae{{$index}}'
                             placeholder="Enter your name" required>
-                        <div class="alert alert-danger" ng-show="myForm.Nmae{{$index}}.$error.required && myForm.Nmae{{$index}}.$touched">
-                            Name is required</div>
+                        <p class="help-block" ng-show="myForm.Nmae{{$index}}.$error.required && (myForm.Nmae{{$index}}.$touched || myForm.$submitted) ">
+                            Name is required</p>
                     </div>
                     {{choice.name}}
-                    <div class="col-sm-3">
+                    <div class="col-sm-3 form-group" ng-class="{ 'has-error' : myForm.pro{{$index}}.$invalid && (!myForm.pro{{$index}}.$pristine || myForm.$submitted)  && submitted}" >
                         <input class="form-control" type="text" ng-model="choice.profile" name="pro{{$index}}"
                             placeholder="Enter your profile" required>
-                        <div class="alert alert-danger" ng-show="myForm.pro{{$index}}.$error.required && myForm.pro{{$index}}.$touched">
-                            Profile is required</div>
+                        <p class="help-block" ng-show="myForm.pro{{$index}}.$error.required && (myForm.pro{{$index}}.$touched || myForm.$submitted) ">
+                            Profile is required</p>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-3 form-group" ng-class="{ 'has-error' : myForm.mail{{$index}}.$invalid && (!myForm.mail{{$index}}.$pristine || myForm.$submitted) && submitted}" >
                         <input class="form-control" type="email" ng-model="choice.mail" name="mail{{$index}}"
                             placeholder="Enter your email" required>
-                        <div class="alert alert-danger" ng-show="myForm.mail{{$index}}.$error.required && myForm.mail{{$index}}.$touched">
-                            Email is required</div>
-                        <div class="alert alert-danger" ng-show="myForm.mail.$error{{$index}}.email">Email is invalid</div>
+                        <p class="help-block" ng-show="myForm.mail{{$index}}.$error.required && (myForm.mail{{$index}}.$touched || myForm.$submitted)">
+                            Email is required</p>
+                        <p class="help-block" ng-show="myForm.mail.$error{{$index}}.email ">Email is invalid</p>
                     </div>
 
                     <button class="btn btn-danger" ng-click="removeChoice(choice.id)"
                         ng-if="choice.id!=index">-</button>
 
-                    <button class="btn btn-danger" ng-click="addNewChoice()" ng-if="choice.id===index">+</button>
+                    <button class="btn btn-danger"  ng-if="choice.id===index">+</button>
                 
                 
                 </div>
@@ -45,7 +46,7 @@
             </div>
             <br>
             <button class="btn btn-primary" ng-click="addNewChoice()">Add fields</button>
-            <button class="btn btn-primary" ng-click="OnSubmit(choices)">Submit</button>
+            <button class="btn btn-primary"  type="submit">Submit</button>
             <br>
             <br>
             <div id="choicesDisplay">

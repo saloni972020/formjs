@@ -49,9 +49,20 @@ var app = angular.module('helloworld');
     		}
     		$scope.choices.splice( index, 1 );
   };
-  $scope.OnSubmit = function(){
+  $scope.OnSubmit = function(isValid){
+    console.log(isValid)
+    $scope.submitted=true;
+    console.log($scope.submitted)
+    if(isValid){
+    
     FormService.serviceSubmit($scope.choices);
+    alert("successs")
 $state.go('submit')
-  } 
+    }
+    else{
+     
+      return;
+    }  
+} 
  
 }])
