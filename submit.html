@@ -1,3 +1,26 @@
 <!-- <div ng-app="helloworld" ng-controller="CartController">
      {{ products}}
     </div> -->
+            
+                    <div ng-app="helloworld" ng-controller="OtherCtrl">
+            
+         
+          <table style="width:100%">
+                <tr>
+                  <th>Name</th>
+                  <th>mail</th> 
+                  <th>Profile</th>
+                  <th>Gender</th>
+                </tr>
+                <tr ng-repeat="val in formVal">
+   
+                        
+                  <td>{{val.name}}</td>
+                  <td> {{val.mail}}</td>
+                  <td>{{val.profile}}</td>
+                  <td>{{val.type}}</td>
+                
+                </tr>
+                
+              </table>
+            </div>
